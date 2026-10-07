@@ -37,7 +37,8 @@ public class TransactionController {
 
     @GetMapping("/{id}")
     public ResponseEntity<TransactionDto> get(@PathVariable Long id) {
-        return ResponseEntity.ok(transactionService.getById(id));
+        TransactionDto transaction = transactionService.getById(id);
+    return transaction != null ? ResponseEntity.ok(transaction) : ResponseEntity.notFound().build();
     }
 
     @PostMapping
