@@ -1,0 +1,249 @@
+{
+  "info": {
+    "name": "BankApplication",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "clientUrl",
+      "value": "http://localhost:8001"
+    },
+    {
+      "key": "accountUrl",
+      "value": "http://localhost:8000"
+    }
+  ],
+  "item": [
+    {
+      "name": "Clients",
+      "item": [
+        {
+          "name": "Get all clients",
+          "request": {
+            "method": "GET",
+            "url": "{{clientUrl}}/api/clients"
+          }
+        },
+        {
+          "name": "Get client by id",
+          "request": {
+            "method": "GET",
+            "url": "{{clientUrl}}/api/clients/1"
+          }
+        },
+        {
+          "name": "Create client",
+          "request": {
+            "method": "POST",
+            "url": "{{clientUrl}}/api/clients",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"dni\": \"1234567890\", \"name\": \"Jose Lema\", \"password\": \"1234\", \"gender\": \"M\", \"age\": 30, \"address\": \"Otavalo sn y principal\", \"phone\": \"098254785\", \"active\": true}"
+            }
+          }
+        },
+        {
+          "name": "Update client",
+          "request": {
+            "method": "PUT",
+            "url": "{{clientUrl}}/api/clients/1",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"dni\": \"1234567890\", \"name\": \"Jose Lema Actualizado\", \"password\": \"1234\", \"gender\": \"M\", \"age\": 31, \"address\": \"Otavalo sn y principal\", \"phone\": \"098254785\", \"active\": true}"
+            }
+          }
+        },
+        {
+          "name": "Partial update client",
+          "request": {
+            "method": "PATCH",
+            "url": "{{clientUrl}}/api/clients/1",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"active\": false}"
+            }
+          }
+        },
+        {
+          "name": "Delete client",
+          "request": {
+            "method": "DELETE",
+            "url": "{{clientUrl}}/api/clients/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Accounts",
+      "item": [
+        {
+          "name": "Get all accounts",
+          "request": {
+            "method": "GET",
+            "url": "{{accountUrl}}/api/accounts"
+          }
+        },
+        {
+          "name": "Get account by id",
+          "request": {
+            "method": "GET",
+            "url": "{{accountUrl}}/api/accounts/1"
+          }
+        },
+        {
+          "name": "Create account",
+          "request": {
+            "method": "POST",
+            "url": "{{accountUrl}}/api/accounts",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"number\": \"478758\", \"type\": \"Ahorro\", \"initialAmount\": 2000, \"active\": true, \"clientId\": 1}"
+            }
+          }
+        },
+        {
+          "name": "Update account",
+          "request": {
+            "method": "PUT",
+            "url": "{{accountUrl}}/api/accounts/1",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"number\": \"478758\", \"type\": \"Corriente\", \"initialAmount\": 2000, \"active\": true, \"clientId\": 1}"
+            }
+          }
+        },
+        {
+          "name": "Partial update account",
+          "request": {
+            "method": "PATCH",
+            "url": "{{accountUrl}}/api/accounts/1",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"active\": true}"
+            }
+          }
+        },
+        {
+          "name": "Delete account",
+          "request": {
+            "method": "DELETE",
+            "url": "{{accountUrl}}/api/accounts/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Transactions",
+      "item": [
+        {
+          "name": "Get all transactions",
+          "request": {
+            "method": "GET",
+            "url": "{{accountUrl}}/api/transactions"
+          }
+        },
+        {
+          "name": "Get transaction by id",
+          "request": {
+            "method": "GET",
+            "url": "{{accountUrl}}/api/transactions/1"
+          }
+        },
+        {
+          "name": "Create deposit (+600)",
+          "request": {
+            "method": "POST",
+            "url": "{{accountUrl}}/api/transactions",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"accountId\": 1, \"amount\": 600}"
+            }
+          }
+        },
+        {
+          "name": "Create withdrawal (-540)",
+          "request": {
+            "method": "POST",
+            "url": "{{accountUrl}}/api/transactions",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"accountId\": 1, \"amount\": -540}"
+            }
+          }
+        },
+        {
+          "name": "Withdrawal without funds (422)",
+          "request": {
+            "method": "POST",
+            "url": "{{accountUrl}}/api/transactions",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"accountId\": 1, \"amount\": -99999}"
+            }
+          }
+        },
+        {
+          "name": "Account statement report (F4)",
+          "request": {
+            "method": "GET",
+            "url": "{{accountUrl}}/api/transactions/clients/1/report?dateTransactionStart=2026-01-01&dateTransactionEnd=2026-12-31"
+          }
+        }
+      ]
+    }
+  ]
+}
